@@ -1,4 +1,5 @@
 #include "open3d_registration/open3d_registration.h"
+#include <optional>
 
 namespace pcd_tools
 {
@@ -9,7 +10,10 @@ namespace pcd_tools
         std::shared_ptr<open3d::pipelines::registration::Feature> source_fpfh,
         std::shared_ptr<open3d::pipelines::registration::Feature> target_fpfh,
         float voxel_size,
-        open3d::utility::optional<unsigned int> seed_,
+
+        // open3d::utility::optional<unsigned int> seed_,
+        std::optional<unsigned int> seed_,
+        
         bool mutual_filter)
     {
 
@@ -37,7 +41,8 @@ namespace pcd_tools
                 open3d::pipelines::registration::
                     TransformationEstimationPointToPoint(false),
                 4 /*最小3*/, correspondence_checker,
-                open3d::pipelines::registration::RANSACConvergenceCriteria(1000000, 0.999), seed_);
+                // open3d::pipelines::registration::RANSACConvergenceCriteria(1000000, 0.999), seed_);
+                open3d::pipelines::registration::RANSACConvergenceCriteria(1000000, 0.999));
         return registration_result;
     }
 
@@ -238,7 +243,8 @@ namespace pcd_tools
         icp_iteration = 30;
         icp_method = 1;
 
-        seed_ = open3d::utility::nullopt;
+        // seed_ = open3d::utility::nullopt;
+        seed_ = std::nullopt;
         mutual_filter = true;
 
         initial_matrix = Eigen::Matrix4d::Identity();
