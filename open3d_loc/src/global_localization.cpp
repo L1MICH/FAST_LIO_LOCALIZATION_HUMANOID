@@ -508,7 +508,7 @@ void GloabalLocalization::CallbackBaselink2Odom(
         q.setY(motionlink2map.pose.pose.orientation.y);
         q.setZ(motionlink2map.pose.pose.orientation.z);
         transform.setRotation(q);
-        br.sendTransform(tf::StampedTransform(transform, baselink2odom->header.stamp, "map", "motion_link"));
+        // br.sendTransform(tf::StampedTransform(transform, baselink2odom->header.stamp, "map", "motion_link"));
 
         localization_3d_confidence_.data = loc_fitness_;
         pub_localization_3d_confidence_.publish(localization_3d_confidence_);

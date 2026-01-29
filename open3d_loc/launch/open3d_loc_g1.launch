@@ -1,11 +1,20 @@
 <launch>
     <!-- localization -->
+	<!-- odom 和 camera_init 是等价的 (FAST_LIO 使用 camera_init 作为 odom frame) -->
 	<node pkg="tf2_ros" type="static_transform_publisher" name="camera_init2odom"
       args="0 0 0 0 0 0 1 odom camera_init" />
+	
+	<!-- body -> imu_link (FAST_LIO 发布 camera_init -> body) -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="body2imulink"
+      args="0 0 0 0 0 0 1 body imu_link" />
+	
+	<!-- imu_link -> base_link -->
 	<node pkg="tf2_ros" type="static_transform_publisher" name="imulink2baselink"
-      args="0 0 0 0 0 0 1 base_link imu_link" />
-	<node pkg="tf2_ros" type="static_transform_publisher" name="base_center_broadcaster"
-      args="0 0 0 0 0 0 1 motion_link base_link" />
+      args="0 0 0 0 0 0 1 imu_link base_link" />
+	
+	<!-- base_link -> motion_link -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="baselink2motionlink"
+      args="0 0 0 0 0 0 1 base_link motion_link" />
 
 	<node pkg="open3d_loc" type="global_localization_node"  name="global_localization_node" output="screen">
 
