@@ -8,7 +8,9 @@ common:
 preprocess:
     lidar_type: 1                # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR, 
     scan_line: 4
-    blind: 0.5
+    blind: 1.5                   # 盲区距离(米)，过滤近处的点(如跟随的人)，建议1.0-2.0
+    z_min: -1.0                  # 最低高度(米)，相对于雷达坐标系，过滤地面以下噪点
+    z_max: 2.0                   # 最高高度(米)，相对于雷达坐标系，过滤天花板(根据实际层高调整)
 
 mapping:
     acc_cov: 0.1

@@ -4,7 +4,7 @@
 #define RETURN0AND1 0x10
 
 Preprocess::Preprocess()
-  :feature_enabled(0), lidar_type(AVIA), blind(0.01), point_filter_num(1)
+  :feature_enabled(0), lidar_type(AVIA), blind(0.01), point_filter_num(1), z_min(-1.0), z_max(2.0)
 {
   inf_bound = 10;
   N_SCANS   = 6;
@@ -172,6 +172,12 @@ void Preprocess::avia_handler(const livox_ros_driver::CustomMsg::ConstPtr &msg)
           pl_full[i].z = msg->points[i].z;
           pl_full[i].intensity = msg->points[i].reflectivity;
           pl_full[i].curvature = msg->points[i].offset_time / float(1000000); // use curvature as time of each laser points, curvature unit: ms
+
+          // 高度过滤：过滤天花板和地面以下的点
+          if(pl_full[i].z < z_min || pl_full[i].z > z_max)
+          {
+            continue;
+          }
 
           if(((abs(pl_full[i].x - pl_full[i-1].x) > 1e-7) 
               || (abs(pl_full[i].y - pl_full[i-1].y) > 1e-7)
