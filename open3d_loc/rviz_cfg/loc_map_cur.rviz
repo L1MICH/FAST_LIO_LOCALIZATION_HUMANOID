@@ -6,10 +6,15 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Axes1
+        - /loc1/map1
+        - /loc1/map1/Status1
         - /TF1
         - /TF1/Frames1
+        - /RobotModel1
+        - /RobotModel1/Status1
       Splitter Ratio: 0.4552238881587982
-    Tree Height: 448
+    Tree Height: 655
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -25,7 +30,6 @@ Panels:
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
-    Experimental: false
     Name: Time
     SyncMode: 0
     SyncSource: cur_submap
@@ -54,26 +58,28 @@ Visualization Manager:
       Plane Cell Count: 10000
       Reference Frame: <Fixed Frame>
       Value: false
-    - Class: rviz/Axes
-      Enabled: true
+    - Alpha: 1
+      Class: rviz/Axes
+      Enabled: false
       Length: 5
       Name: Axes
       Radius: 0.10000000149011612
       Reference Frame: <Fixed Frame>
-      Value: true
+      Show Trail: false
+      Value: false
     - Class: rviz/Group
       Displays:
         - Alpha: 0.699999988079071
           Autocompute Intensity Bounds: true
           Autocompute Value Bounds:
-            Max Value: 10
-            Min Value: -10
+            Max Value: 8.100485801696777
+            Min Value: -18.646255493164062
             Value: true
           Axis: Z
           Channel Name: intensity
           Class: rviz/PointCloud2
           Color: 114; 159; 207
-          Color Transformer: FlatColor
+          Color Transformer: AxisColor
           Decay Time: 0
           Enabled: true
           Invert Rainbow: false
@@ -111,7 +117,7 @@ Visualization Manager:
           Position Transformer: XYZ
           Queue Size: 10
           Selectable: true
-          Size (Pixels): 2
+          Size (Pixels): 1
           Size (m): 0.009999999776482582
           Style: Points
           Topic: /submap
@@ -168,6 +174,7 @@ Visualization Manager:
           Keep: 1
           Name: baselink2map
           Position Tolerance: 0.019999999552965164
+          Queue Size: 10
           Shape:
             Alpha: 1
             Axes Length: 2
@@ -218,25 +225,13 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_footprint:
-          Value: false
         base_link:
           Value: false
         body:
           Value: false
         camera_init:
           Value: false
-        camera_link:
-          Value: false
-        camera_link1:
-          Value: false
-        camera_link2:
-          Value: false
-        camera_optical_frame:
-          Value: false
         imu_link:
-          Value: false
-        livox_frame:
           Value: false
         map:
           Value: true
@@ -244,55 +239,21 @@ Visualization Manager:
           Value: true
         odom:
           Value: false
-        robot_ewellix_lift_base_link:
-          Value: false
-        robot_ewellix_lift_top_link:
-          Value: false
-        zu5_Link1:
-          Value: false
-        zu5_Link2:
-          Value: false
-        zu5_Link3:
-          Value: false
-        zu5_Link4:
-          Value: false
-        zu5_Link5:
-          Value: false
-        zu5_Link6:
-          Value: false
-      Marker Scale: 10
+      Marker Alpha: 1
+      Marker Scale: 3
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
         map:
-          motion_link:
-            base_link:
-              imu_link:
-                {}
-              livox_frame:
-                {}
-              robot_ewellix_lift_base_link:
-                robot_ewellix_lift_top_link:
-                  base_footprint:
-                    zu5_Link1:
-                      zu5_Link2:
-                        zu5_Link3:
-                          zu5_Link4:
-                            zu5_Link5:
-                              zu5_Link6:
-                                camera_optical_frame:
-                                  camera_link:
-                                    {}
-            camera_link1:
-              {}
-            camera_link2:
-              {}
           odom:
             camera_init:
               body:
-                {}
+                imu_link:
+                  base_link:
+                    motion_link:
+                      {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -316,7 +277,7 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.10000000149011612
+      Size (m): 0.009999999776482582
       Style: Flat Squares
       Topic: /cloud_registered_1
       Unreliable: false
@@ -329,6 +290,7 @@ Visualization Manager:
       Enabled: true
       History Length: 100
       Name: PointStamped
+      Queue Size: 10
       Radius: 0.009999999776482582
       Topic: /chassis_ctl_node/cur_track_point
       Unreliable: false
@@ -339,6 +301,7 @@ Visualization Manager:
       Enabled: true
       History Length: 1
       Name: PointStamped
+      Queue Size: 10
       Radius: 0.03999999910593033
       Topic: /chassis_ctl_action/cur_track_point
       Unreliable: false
@@ -408,6 +371,7 @@ Visualization Manager:
       Head Length: 0.30000001192092896
       Head Radius: 0.10000000149011612
       Name: Pose
+      Queue Size: 10
       Shaft Length: 1
       Shaft Radius: 0.5
       Shape: Axes
@@ -424,66 +388,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_footprint:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        robot_ewellix_lift_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        robot_ewellix_lift_top_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        zu5_Link1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        zu5_Link2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        zu5_Link3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        zu5_Link4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        zu5_Link5:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        zu5_Link6:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -495,7 +399,7 @@ Visualization Manager:
       Marker Topic: /aviable_path
       Name: MarkerArray
       Namespaces:
-        aviable_path: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/MarkerArray
@@ -503,7 +407,7 @@ Visualization Manager:
       Marker Topic: /record_stations_name
       Name: MarkerArray
       Namespaces:
-        station_name: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/MarkerArray
@@ -511,7 +415,7 @@ Visualization Manager:
       Marker Topic: /record_stations_sphere
       Name: MarkerArray
       Namespaces:
-        station_shape: true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
@@ -542,33 +446,33 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 74.24046325683594
+      Distance: 9.486249923706055
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Field of View: 0.7853981852531433
       Focal Point:
-        X: 16.348730087280273
-        Y: 3.259608030319214
-        Z: -8.120250701904297
+        X: 0.2462189495563507
+        Y: 1.2363898754119873
+        Z: 1.9348469972610474
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6547966003417969
+      Pitch: 0.8747959136962891
       Target Frame: <Fixed Frame>
-      Value: Orbit (rviz)
-      Yaw: 3.1750271320343018
+      Yaw: 2.764575481414795
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 745
+  Height: 952
   Hide Left Dock: false
   Hide Right Dock: true
-  QMainWindow State: 000000ff00000000fd0000000400000000000001940000024bfc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000024b000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f0000024bfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000024b000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004bd0000003efc0100000002fb0000000800540069006d00650100000000000004bd000002eb00fffffffb0000000800540069006d00650100000000000004500000000000000000000003230000024b00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001940000031afc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000031a000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f0000024bfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d0000024b000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000006f20000003efc0100000002fb0000000800540069006d00650100000000000006f2000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000005580000031a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -577,6 +481,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: true
-  Width: 1213
-  X: 67
+  Width: 1778
+  X: 72
   Y: 27
