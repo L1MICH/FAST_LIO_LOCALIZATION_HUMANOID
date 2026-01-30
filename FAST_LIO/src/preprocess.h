@@ -102,7 +102,8 @@ class Preprocess
   float time_unit_scale;
   int lidar_type, point_filter_num, N_SCANS, SCAN_RATE, time_unit;
   double blind;
-  double z_min, z_max;  // 高度过滤范围
+  double mount_pitch_deg;  // 传感器安装俯仰角（度），向下为正
+  double level_z_min, level_z_max;  // 水平坐标系高度限制（米）
   bool feature_enabled, given_offset_time;
   ros::Publisher pub_full, pub_surf, pub_corn;
     

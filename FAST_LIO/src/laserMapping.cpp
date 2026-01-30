@@ -779,8 +779,9 @@ int main(int argc, char** argv)
     nh.param<double>("mapping/b_gyr_cov",b_gyr_cov,0.0001);
     nh.param<double>("mapping/b_acc_cov",b_acc_cov,0.0001);
     nh.param<double>("preprocess/blind", p_pre->blind, 0.01);
-    nh.param<double>("preprocess/z_min", p_pre->z_min, -1.0);
-    nh.param<double>("preprocess/z_max", p_pre->z_max, 2.0);
+    nh.param<double>("preprocess/mount_pitch_deg", p_pre->mount_pitch_deg, 0.0);   // 传感器安装俯仰角(度)，向下为正
+    nh.param<double>("preprocess/level_z_min", p_pre->level_z_min, -1.0);  // 水平坐标系最小高度
+    nh.param<double>("preprocess/level_z_max", p_pre->level_z_max, 3.0);   // 水平坐标系最大高度
     nh.param<int>("preprocess/lidar_type", lidar_type, AVIA);
     nh.param<int>("preprocess/scan_line", p_pre->N_SCANS, 16);
     nh.param<int>("preprocess/timestamp_unit", p_pre->time_unit, US);
@@ -819,6 +820,7 @@ int main(int argc, char** argv)
 
     Lidar_T_wrt_IMU<<VEC_FROM_ARRAY(extrinT);
     Lidar_R_wrt_IMU<<MAT_FROM_ARRAY(extrinR);
+    
     p_imu->set_extrinsic(Lidar_T_wrt_IMU, Lidar_R_wrt_IMU);
     p_imu->set_gyr_cov(V3D(gyr_cov, gyr_cov, gyr_cov));
     p_imu->set_acc_cov(V3D(acc_cov, acc_cov, acc_cov));

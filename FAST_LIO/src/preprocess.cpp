@@ -4,7 +4,8 @@
 #define RETURN0AND1 0x10
 
 Preprocess::Preprocess()
-  :feature_enabled(0), lidar_type(AVIA), blind(0.01), point_filter_num(1), z_min(-1.0), z_max(2.0)
+  :feature_enabled(0), lidar_type(AVIA), blind(0.01), point_filter_num(1),
+   mount_pitch_deg(0.0), level_z_min(-1.0), level_z_max(3.0)
 {
   inf_bound = 10;
   N_SCANS   = 6;
@@ -173,8 +174,15 @@ void Preprocess::avia_handler(const livox_ros_driver::CustomMsg::ConstPtr &msg)
           pl_full[i].intensity = msg->points[i].reflectivity;
           pl_full[i].curvature = msg->points[i].offset_time / float(1000000); // use curvature as time of each laser points, curvature unit: ms
 
-          // 高度过滤：过滤天花板和地面以下的点
-          if(pl_full[i].z < z_min || pl_full[i].z > z_max)
+          // 水平坐标系高度过滤：用于倾斜安装的雷达过滤远方的高点
+          // 根据传感器安装俯仰角，将点从雷达坐标系转换到水平坐标系
+          // 假设传感器向下倾斜（绕Y轴旋转），向下为正
+          // level_z = -x * sin(pitch) + z * cos(pitch)
+          double pitch_rad = mount_pitch_deg * M_PI / 180.0;
+          double cos_pitch = cos(pitch_rad);
+          double sin_pitch = sin(pitch_rad);
+          double level_z = -pl_full[i].x * sin_pitch + pl_full[i].z * cos_pitch;
+          if(level_z < level_z_min || level_z > level_z_max)
           {
             continue;
           }
